@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Myntra - E-commerce</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f4;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background-color: #111;
+            color: white;
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .navbar .search-bar input {
+            padding: 8px;
+            width: 300px;
+            border-radius: 4px;
+            border: none;
+        }
+
+        .navbar .nav-links a {
+            margin-left: 20px;
+            padding: 8px;
+            font-size: 16px;
+        }
+
+        /* Product Section */
+        .product-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 250px;
+            margin: 20px;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+        }
+
+        .product-image {
+            background-color: #ddd;
+            height: 200px;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .product-info {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .product-info h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .product-info p {
+            font-size: 16px;
+            color: #888;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            width: 400px;
+        }
+
+        .modal-content h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .modal-content p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">Myntra</div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search for products">
+        </div>
+        <div class="nav-links">
+            <a href="#">Men</a>
+            <a href="#">Women</a>
+            <a href="#">Kids</a>
+            <a href="#">Offers</a>
+            <a href="#">Cart</a>
+        </div>
+    </nav>
+
+    <!-- Product Section -->
+    <div class="product-container">
+        <div class="product-card" onclick="showModal('product1')">
+            <div class="product-image"></div>
+            <div class="product-info">
+                <h3>Men's T-Shirt</h3>
+                <p>₹799</p>
+            </div>
+        </div>
+        <div class="product-card" onclick="showModal('product2')">
+            <div class="product-image"></div>
+            <div class="product-info">
+                <h3>Women's Dress</h3>
+                <p>₹1499</p>
+            </div>
+        </div>
+        <!-- More products can go here -->
+    </div>
+
+    <!-- Product Detail Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">×</span>
+            <h2 id="productTitle"></h2>
+            <p id="productPrice"></p>
+            <p id="productDescription"></p>
+            <button>Add to Cart</button>
+        </div>
+    </div>
+
+    <script>
+        function showModal(productId) {
+            // Example data for the products
+            const productData = {
+                product1: {
+                    title: "Men's T-Shirt",
+                    price: "₹799",
+                    description: "A comfortable and stylish men's t-shirt perfect for casual wear."
+                },
+                product2: {
+                    title: "Women's Dress",
+                    price: "₹1499",
+                    description: "A beautiful dress for women, perfect for any occasion."
+                }
+            };
+
+            // Set the content based on the clicked product
+            const product = productData[productId];
+            document.getElementById("productTitle").innerText = product.title;
+            document.getElementById("productPrice").innerText = product.price;
+            document.getElementById("productDescription").innerText = product.description;
+
+            // Show the modal
+            document.getElementById("productModal").style.display = "flex";
+        }
+
+        function closeModal() {
+            // Hide the modal
+            document.getElementById("productModal").style.display = "none";
+        }
+    </script>
+</body>
+</html>
